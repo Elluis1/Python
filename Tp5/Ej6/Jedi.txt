@@ -1,0 +1,41 @@
+Nombre: Yoda
+Especie: Jedi Master
+Año de nacimiento: 896 BBY
+Color de sable de luz: Verde
+Ranking: Jedi Master
+Maestro: N/A
+
+Nombre: Luke Skywalker
+Especie: Human
+Año de nacimiento: 19 BBY
+Color de sable de luz: Verde
+Ranking: Jedi Master, Jedi Knight
+Maestro: Yoda
+
+Nombre: Ahsoka Tano
+Especie: Togruta
+Año de nacimiento: 36 BBY
+Color de sable de luz: Azul
+Ranking: Jedi Knight
+Maestro: Anakin Skywalker
+
+Nombre: Obi-Wan Kenobi
+Especie: Human
+Año de nacimiento: 57 BBY
+Color de sable de luz: Azul
+Ranking: Jedi Master
+Maestro: Qui-Gon Jinn
+
+Nombre: Qui-Gon Jinn
+Especie: Human
+Año de nacimiento: 92 BBY
+Color de sable de luz: Verde
+Ranking: Jedi Master
+Maestro: N/A
+
+Nombre: Mace Windu
+Especie: Human
+Año de nacimiento: 72 BBY
+Color de sable de luz: Purple
+Ranking: Jedi Master
+Maestro: N/A
