@@ -1,5 +1,6 @@
 from classBinaryTree import BinaryTree, NodeTree
 
+# crear arboles
 nombreArb = BinaryTree()
 numPokedexArb = BinaryTree()
 tiposArb = BinaryTree()
@@ -14,7 +15,7 @@ pokemonList = [
     { 'nombre': 'tyrantrum', 'pokedexNum': 697, 'tipos': ['rock', 'dragon'] }
 ]
 
-# A)
+# A) # insertar datos en arboles
 for pokemon in pokemonList:
     nombre = pokemon['nombre']
     pokedexNum = pokemon['pokedexNum']
@@ -24,14 +25,14 @@ for pokemon in pokemonList:
     numPokedexArb.insert_node(pokedexNum, pokemon)
     tiposArb.insert_node(tipos, pokemon)
 
-# B)
+# B) # busqueda por partes
 def searchByCoincidence(node: NodeTree):
     if node.value.find('bul'.lower()) != -1:
         print(node.value)
 
 # nombreArb.inorden(searchByCoincidence)
 
-# C)
+# C) mostrar nombre de todos los pokemons de un tipo especifico
 tipos = ['agua', 'fuego', 'planta', 'electrico']
 
 def searchByTypes(node: NodeTree):
@@ -41,19 +42,23 @@ def searchByTypes(node: NodeTree):
 
  # tiposArb.inorden(searchByTypes)
 
-# D)
+# D) listado en orden ascendente
+# pokedex
 # numPokedexArb.inorden()
+# nombre
 # nombreArb.inorden()
+# por nivel
 # nombreArb.by_level()
 
-# E)
+# E) busqueda especifica por nombre
 print('buscaste a:', nombreArb.search('lycanroc').value)
 print('buscaste a:', nombreArb.search('tyrantrum').value)
 print('buscaste a:', nombreArb.search('jolteon').value)
 
-# F)
+# F) cuantos tipos de determinados elementos
 tipos = ['electrico', 'steel']
 
+# funcion para buscar cuantos son
 def countByType(node: NodeTree, value):
     for specificType in tipos:
         if specificType in node.value:
