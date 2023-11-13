@@ -1,36 +1,30 @@
-import networkx as nx
+from classGraph import Graph
 
-# Crear el grafo no dirigido
-G = nx.Graph()
+grafoCasa = Graph(False)
 
-# Definir los ambientes de la casa como vértices
-ambientes = ["cocina", "comedor", "cochera", "quincho", "baño1", "baño2", "habitacion1", "habitacion2", "sala_de_estar", "terraza", "patio"]
+habitaciones = ['cocina', 'comedor', 'cochera', 'quincho', 'baño 1', 'baño 2', 'habitacion 1', 'habitacion 2', 'sala de estar', 'terraza', 'patio']
 
-# Agregar vértices al grafo
-G.add_nodes_from(ambientes)
+class Habitacion():
+    def __init__(self, name):
+        self.name = name
 
-# Agregar aristas al grafo con pesos (distancia en metros)
-aristas = [
-    ("cocina", "comedor", 5), ("cocina", "cochera", 8), ("cocina", "habitacion1", 3),
-    ("comedor", "cochera", 6), ("comedor", "habitacion2", 5), ("cochera", "quincho", 7),
-    ("quincho", "baño1", 4), ("quincho", "baño2", 6), ("quincho", "terraza", 8),
-    ("baño1", "habitacion1", 2), ("baño2", "habitacion2", 4),
-    ("habitacion1", "sala_de_estar", 7), ("sala_de_estar", "habitacion2", 6),
-    ("sala_de_estar", "patio", 9), ("terraza", "patio", 5)
-]
+for habitacion in habitaciones:
+    grafoCasa.insert_vertice(habitacion)
 
-G.add_weighted_edges_from(aristas)
+grafoCasa.insert_arist('cocina', 'comedor', 20), grafoCasa.insert_arist('comedor', 'cochera', 14)
+grafoCasa.insert_arist('cochera', 'quincho', 30), grafoCasa.insert_arist('quincho', 'baño 1', 3)
+grafoCasa.insert_arist('baño 1', 'baño 2', 50), grafoCasa.insert_arist('baño 2', 'habitacion 1', 10)
+grafoCasa.insert_arist('habitacion 1', 'habitacion 2', 17), grafoCasa.insert_arist('habitacion 2', 'sala de estar', 24)
+grafoCasa.insert_arist('sala de estar', 'terraza', 14), grafoCasa.insert_arist('terraza', 'patio', 32)
+grafoCasa.insert_arist('cocina', 'patio', 15), grafoCasa.insert_arist('comedor', 'terraza', 29)
+grafoCasa.insert_arist('cochera', 'sala de estar', 4), grafoCasa.insert_arist('quincho', 'habitacion 2', 40)
+grafoCasa.insert_arist('baño 1', 'habitacion 1', 7), grafoCasa.insert_arist('patio', 'comedor', 26)
+grafoCasa.insert_arist('patio', 'sala de estar', 22), grafoCasa.insert_arist('patio', 'baño 1', 14)
+grafoCasa.insert_arist('cocina', 'baño 2', 9), grafoCasa.insert_arist('comedor', 'sala de estar', 5)
 
-# c. Obtener el árbol de expansión mínima y determinar la longitud total de cables
-arbol_expansion_minima = nx.minimum_spanning_tree(G)
-longitud_total_cables = sum(weight for _, _, weight in arbol_expansion_minima.edges(data="weight"))
-print("Árbol de expansión mínima:")
-print(list(arbol_expansion_minima.edges()))
-print(f"Longitud total de cables necesarios: {longitud_total_cables} metros")
+print(grafoCasa.kruskal())
+stack = grafoCasa.dijkstra('habitacion 1', 'sala de estar')
 
-# d. Determinar el camino más corto desde habitacion1 hasta sala_de_estar
-camino_mas_corto = nx.shortest_path(G, source="habitacion1", target="sala_de_estar", weight="weight")
-longitud_camino_mas_corto = nx.shortest_path_length(G, source="habitacion1", target="sala_de_estar", weight="weight")
-print("Camino más corto desde habitacion 1 hasta sala_de_estar:")
-print(camino_mas_corto)
-print(f"Longitud del camino más corto: {longitud_camino_mas_corto} metros")
+while stack.size() > 0:
+    print(stack.on_top())
+    stack.pop()
