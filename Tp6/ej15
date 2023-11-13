@@ -1,0 +1,47 @@
+from classGraph import Graph
+
+grafoMaravillas = Graph(False)
+
+class maravilla():
+
+     def __init__(self, nombre, pais, tipo):
+        self.nombre = nombre
+        self.pais = pais
+        self.tipo = tipo
+
+     def __str__(self):
+        return f'{self.nombre}-{self.pais}-{self.tipo}'
+
+maravillas = [
+    {"nombre": "La Gran Muralla China", "pais": "China", "tipo": "arquitectónica"},
+    {"nombre": "El Taj Mahal", "pais": "India", "tipo": "arquitectónica"},
+    {"nombre": "La Estatua de la Libertad", "pais": "Estados Unidos", "tipo": "arquitectónica"},
+    {"nombre": "El Coliseo de Roma", "pais": "Italia", "tipo": "arquitectónica"},
+    {"nombre": "La Ciudad de Petra", "pais": "Jordania", "tipo": "arquitectónica"},
+    {"nombre": "Cristo Redentor", "pais": "Brasil", "tipo": "arquitectónica"},
+    {"nombre": "Chichén Itzá", "pais": "México", "tipo": "arquitectónica"},
+    {"nombre": "La Gran Barrera de Coral", "pais": "Australia", "tipo": "natural"},
+    {"nombre": "Las Cataratas del Iguazú", "pais": "Argentina y Brasil", "tipo": "natural"},
+    {"nombre": "El Parque Nacional de Komodo", "pais": "Indonesia", "tipo": "natural"},
+    {"nombre": "La Amazonia", "pais": "Varios países de América del Sur", "tipo": "natural"},
+    {"nombre": "La Bahía de Ha Long", "pais": "Vietnam", "tipo": "natural"},
+    {"nombre": "Las Montañas de Zhangjiajie", "pais": "China", "tipo": "natural"}
+]
+
+grafoMaravillas.insert_vertice(maravilla("La Gran Muralla China", "China", "arquitectónica"), criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("El Taj Mahal", "India", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("La Estatua de la Libertad", "Estados Unidos", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("El Coliseo de Roma", "Italia", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("La Ciudad de Petra", "Jordania", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("Cristo Redentor", "Brasil", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("Chichén Itzá", "México", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("La Gran Barrera de Coral", "Australia", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("Las Cataratas del Iguazú", "Argentina y Brasil", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("El Parque Nacional de Komodo", "Indonesia", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("La Amazonia", "Varios países de América del Sur", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("La Bahía de Ha Long", "Vietnam", "arquitectónica"),criterio='nombre')
+grafoMaravillas.insert_vertice(maravilla("Las Montañas de Zhangjiajie", "China", "arquitectónica"),criterio='nombre')
+
+[ kruskal ] = grafoMaravillas.kruskal()
+
+print(kruskal)
