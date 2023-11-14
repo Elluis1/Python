@@ -1,30 +1,90 @@
-from classGraph import Graph
+from classGrafo import Grafo
 
-grafoCasa = Graph(False)
+grafoCasa=Grafo(dirigido=False)
 
-habitaciones = ['cocina', 'comedor', 'cochera', 'quincho', 'baño 1', 'baño 2', 'habitacion 1', 'habitacion 2', 'sala de estar', 'terraza', 'patio']
+# a. cada vértice representar un ambiente de una casa: cocina, comedor, cochera, quincho,
+# baño 1, baño 2, habitación 1, habitación 2, sala de estar, terraza, patio;
+grafoCasa.insert_vertice('cocina')
+grafoCasa.insert_vertice('comedor')
+grafoCasa.insert_vertice('cochera')
+grafoCasa.insert_vertice('quincho')
+grafoCasa.insert_vertice('banio 1')
+grafoCasa.insert_vertice('banio 2')
+grafoCasa.insert_vertice('habitacion 1')
+grafoCasa.insert_vertice('habitacion 2')
+grafoCasa.insert_vertice('sala de estar')
+grafoCasa.insert_vertice('terraza')
+grafoCasa.insert_vertice('patio')
+# b. cargar al menos tres aristas a cada vértice, y a dos de estas cárguele cinco, el peso de la aris-
+# ta es la distancia entre los ambientes, se debe cargar en metros;
 
-class Habitacion():
-    def __init__(self, name):
-        self.name = name
+grafoCasa.insert_arist('cocina', 'comedor', 3)
+grafoCasa.insert_arist('cocina', 'cochera', 5)
 
-for habitacion in habitaciones:
-    grafoCasa.insert_vertice(habitacion)
 
-grafoCasa.insert_arist('cocina', 'comedor', 20), grafoCasa.insert_arist('comedor', 'cochera', 14)
-grafoCasa.insert_arist('cochera', 'quincho', 30), grafoCasa.insert_arist('quincho', 'baño 1', 3)
-grafoCasa.insert_arist('baño 1', 'baño 2', 50), grafoCasa.insert_arist('baño 2', 'habitacion 1', 10)
-grafoCasa.insert_arist('habitacion 1', 'habitacion 2', 17), grafoCasa.insert_arist('habitacion 2', 'sala de estar', 24)
-grafoCasa.insert_arist('sala de estar', 'terraza', 14), grafoCasa.insert_arist('terraza', 'patio', 32)
-grafoCasa.insert_arist('cocina', 'patio', 15), grafoCasa.insert_arist('comedor', 'terraza', 29)
-grafoCasa.insert_arist('cochera', 'sala de estar', 4), grafoCasa.insert_arist('quincho', 'habitacion 2', 40)
-grafoCasa.insert_arist('baño 1', 'habitacion 1', 7), grafoCasa.insert_arist('patio', 'comedor', 26)
-grafoCasa.insert_arist('patio', 'sala de estar', 22), grafoCasa.insert_arist('patio', 'baño 1', 14)
-grafoCasa.insert_arist('cocina', 'baño 2', 9), grafoCasa.insert_arist('comedor', 'sala de estar', 5)
+grafoCasa.insert_arist('comedor', 'cochera', 3)
+grafoCasa.insert_arist('comedor', 'quincho', 5)
 
-print(grafoCasa.kruskal())
-stack = grafoCasa.dijkstra('habitacion 1', 'sala de estar')
+grafoCasa.insert_arist('cochera', 'quincho', 3)
 
-while stack.size() > 0:
-    print(stack.on_top())
-    stack.pop()
+grafoCasa.insert_arist('cocina', 'banio 1', 3)
+grafoCasa.insert_arist('cocina', 'habitacion 1', 5)
+grafoCasa.insert_arist('cocina', 'habitacion 2', 5)
+
+grafoCasa.insert_arist('banio 1', 'habitacion 1', 3)
+grafoCasa.insert_arist('banio 1', 'habitacion 2', 3)
+
+grafoCasa.insert_arist('habitacion 1', 'habitacion 2', 3)
+
+grafoCasa.insert_arist('habitacion 2', 'banio 2', 3)
+grafoCasa.insert_arist('habitacion 2', 'sala de estar', 5)
+
+grafoCasa.insert_arist('banio 2', 'sala de estar', 5)
+grafoCasa.insert_arist('banio 2', 'quincho', 5)
+grafoCasa.insert_arist('patio', 'quincho', 5)
+
+grafoCasa.insert_arist('sala de estar', 'terraza', 3)
+grafoCasa.insert_arist('sala de estar', 'patio', 3)
+
+grafoCasa.insert_arist('terraza', 'patio', 3)
+grafoCasa.insert_arist('terraza', 'cochera', 3)
+
+grafoCasa.barrido()
+
+# c. obtener el árbol de expansión mínima y determine cuantos metros de cables se necesitan
+# para conectar todos los ambientes;
+bosque, sumametros = grafoCasa.kruskal_peso()
+
+for arbol in bosque:
+    print('arbol')
+    for nodo in arbol.split(';'):
+        print(nodo)
+
+print(f"Los metros necesarios de cables son {sumametros} metros")
+print()
+# d. determinar cuál es el camino más corto desde la habitación 1 hasta la sala de estar para
+# determinar cuántos metros de cable de red se necesitan para conectar el router con el
+# Smart Tv.
+
+print('Camino corto')
+ori = 'habitacion 1'
+des = 'sala de estar'
+path=grafoCasa.has_path(ori,des)
+origen = grafoCasa.search_vertice(ori)
+destino = grafoCasa.search_vertice(des)
+camino_mas_corto = None
+cable=0
+if(origen is not None and destino is not None):
+    if path == True:
+        camino_mas_corto = grafoCasa.dijkstra(ori, des, None)
+        fin = des
+        while camino_mas_corto.size() > 0:      
+            value = camino_mas_corto.pop()
+            if fin == value[0]:
+                cable += value[1]  
+                print(value[0],'Peso', value[1])
+                fin = value[2]
+            
+        print(f'se necesitan {cable} metros de cable de red')
+    else:
+        print("No hay un camino entre", ori, "y", des)
