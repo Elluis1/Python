@@ -1,3 +1,4 @@
+# instanciar las clases
 class Notificacion:
     def __init__(self, hora, aplicacion, mensaje):
         self.hora = hora
@@ -29,6 +30,7 @@ cola.agregar_notificacion(notificacion2)
 
 # Obtener y mostrar la primera notificación de la cola
 primera_notificacion = cola.obtener_notificacion()
+# si existe notificacion
 if primera_notificacion:
     print("Hora:", primera_notificacion.hora)
     print("Aplicación:", primera_notificacion.aplicacion)
@@ -36,9 +38,11 @@ if primera_notificacion:
 else:
     print("No hay notificaciones en la cola.")
 
+# filtrado para borrar notificaciones facebook
 def eliminar_notificaciones_facebook(cola):
     cola_sin_facebook = [notif for notif in cola if notif["app"] != "Facebook"]
     return cola_sin_facebook
+
 
 def mostrar_notificaciones_twitter_python(cola):
     notificaciones_python = [notif for notif in cola if notif["app"] == "Twitter" and "Python" in notif["mensaje"]]
