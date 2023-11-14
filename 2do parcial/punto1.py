@@ -29,10 +29,10 @@ pokemon11 = pokemon("Tyrantrum",697, "Dragón")
 
 pokemones= [pokemon1,pokemon2,pokemon3,pokemon4,pokemon5,pokemon6,pokemon7,pokemon8,pokemon9,pokemon10,pokemon11]
 
-for i in pokemones:
-    nombre_tree.insert_node(i.nombre,(i.numero,i.tipo))
-    pokedexNum_tree.insert_node(i.numero,(i.nombre,i.tipo))
-    tipos_tree.insert_node(i.tipo,(i.nombre,i.numero))
+for pokemon in pokemones:
+    nombre_tree.insert_node(pokemon.nombre,(pokemon.numero,pokemon.tipo))
+    pokedexNum_tree.insert_node(pokemon.numero,(pokemon.nombre,pokemon.tipo))
+    tipos_tree.insert_node(pokemon.tipo,(pokemon.nombre,pokemon.numero))
     
 nombre_tree.inorden()
 pokedexNum_tree.inorden()
@@ -63,11 +63,14 @@ for i in lista_tipo:
 # d) realizar un listado en orden ascendente por número y nombre de Pokémon, y
 # además un listado por nivel por nombre;
 print('Por orden ascendente')
+
 nombre_tree.inorden()
 print(' ')
+
 pokedexNum_tree.inorden()
 print(' ')
-print('Por por nivel')
+
+print('Por orden por nivel')
 nombre_tree.by_level()
 
 # e) mostrar todos los datos de los Pokémons: Jolteon, Lycanroc y Tyrantrum;
@@ -79,5 +82,5 @@ for i in lista_pokemos:
 
 # f) Determina cuantos Pokémons hay de tipo eléctrico y acero.
 
-print("De tipo Electrico hay:",tipos_tree.contar('Eléctrico'))
-print("De tipo Acero hay:",tipos_tree.contar('Acero'))
+print("De tipo Electrico hay:",tipos_tree.contar('Eléctrico'), 'pokemons')
+print("De tipo Acero hay:",tipos_tree.contar('Acero'), 'pokemons')
