@@ -1,3 +1,7 @@
+# 1. Se tiene datos de los Pokémons de las 8 generaciones cargados de manera desordenada
+# de los cuales se conoce su nombre, número, tipo/tipos para el cual debemos construir
+# tres árboles para acceder de manera eficiente a los datos, contemplando lo siguiente:
+
 from arbol import BinaryTree
 
 class pokemon:
